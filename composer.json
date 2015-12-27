@@ -1,0 +1,24 @@
+{
+    "name": "brtriver/date-range",
+    "description": "Simple date ranges for PHP",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "brtriver",
+            "email": "brtriver@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Brtriver\\DateRange\\": "src/"
+        }
+    },
+    "extra": {
+        "aura": {
+            "type": "library"
+        }
+    }
+}
