@@ -11,12 +11,14 @@ Dbup works with PHP 5.4.0 or later.
 Install
 --------
 
-...
+The recommended way to install date-range is with composer.
+
+```bash
+$ composer require brtriver/date-range
+```
 
 Usage
 ------
-
-If you show demo, you have only to run `make demo`.
 
 ### Instance
 
@@ -89,6 +91,17 @@ foreach($range->getDatePeriod() as $d) {
 // 2018-12-01
 // 2019-12-01
 // 2020-12-01
+```
+
+## try demo
+
+If you show demo, you have only to run `make demo`.
+
+```bash
+cd ./vendor/brtriver/date-range
+make setup
+make install
+make demo
 ```
 
 License
