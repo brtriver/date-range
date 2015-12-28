@@ -23,9 +23,16 @@ var_dump($range->contains('2017-01-10'));
 
 
 ## get DatePeriod for loop
+foreach($range as $d) {
+    echo $d->format('Y-m-d') . PHP_EOL;
+}
+
+## or
 foreach($range->getDatePeriod() as $d) {
     echo $d->format('Y-m-d') . PHP_EOL;
 }
+
+
 // 2015-12-01
 // 2015-12-02
 // 2015-12-03

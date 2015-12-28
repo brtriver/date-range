@@ -4,8 +4,9 @@ namespace Brtriver\DateRange;
 use DateTime;
 use DateInterval;
 use DatePeriod;
+use IteratorAggregate;
 
-class DateRange
+class DateRange implements IteratorAggregate
 {
     private $start;
     private $end;
@@ -48,6 +49,11 @@ class DateRange
     public function getDatePeriod(DateInterval $interval = null)
     {
         return new DatePeriod($this->start, ($interval)?: $this->interval, $this->end);
+    }
+
+    public function getIterator()
+    {
+        return $this->getDatePeriod();
     }
 
     public static function convertToDateTime($param)

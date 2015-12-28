@@ -83,7 +83,15 @@ var_dump($range->contains('2017-01-10'));
 ```
 
 ### Period
-If you use DateRange in foreach, you can get DatePeriod object through `getDatePeriod` like below:
+You can use DateRange in foreach.
+
+```php
+foreach($range as $d) {
+    echo $d->format('Y-m-d') . PHP_EOL;
+}
+```
+
+If you use DatePeriod object directly, you can also get DatePeriod object through `getDatePeriod` like below:
 
 ```php
 foreach($range->getDatePeriod() as $d) {

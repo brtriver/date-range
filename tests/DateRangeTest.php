@@ -75,6 +75,23 @@ class DateRangeTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
+    public function getIterator()
+    {
+        $range = new DateRange(['2015-12-01', '2015-12-04']);
+        $results = [];
+        foreach($range as $d) {
+            $results[] = $d;
+        }
+        $expected = [
+            new DateTime('2015-12-01'),
+            new DateTime('2015-12-02'),
+            new DateTime('2015-12-03'),
+        ];
+        $this->assertEquals($expected, $results);
+    }
+
+
+    /** @test */
     public function testContains()
     {
         $range = new DateRange([$this->start, $this->end]);
