@@ -53,3 +53,11 @@ foreach($range->getDatePeriod() as $d) {
 // 2018-12-01
 // 2019-12-01
 // 2020-12-01
+
+## try - catch
+
+try {
+    $range = new DateRange(['tomorrow', 'today']);
+} catch (\InvalidArgumentException $e) {
+    echo $e->getMessage();
+}

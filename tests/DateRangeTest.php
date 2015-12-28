@@ -83,4 +83,23 @@ class DateRangeTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($range->contains('2015-12-31'));
         $this->assertFalse($range->contains('2016-01-01'));
     }
+
+    /**
+     * @test
+     * @expectedException InvalidArgumentException
+     */
+    public function constructInvalidArrayArgument()
+    {
+        // construct parameter should have an array with two values.
+        new DateRange(['today']);
+    }
+
+    /**
+     * @test
+     * @expectedException InvalidArgumentException
+     */
+    public function shouldHaveEndDateIsAfterThanStartDate()
+    {
+        new DateRange(['tomorrow', 'today']);
+    }
 }

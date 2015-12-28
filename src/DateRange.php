@@ -24,7 +24,14 @@ class DateRange
                 $this->start = self::convertToDateTime($values[0]);
                 $this->end = self::convertToDateTime($values[1]);
             }
+        } else {
+            throw new \InvalidArgumentException('Invalid argument number or format');
         }
+
+        if ($this->start->getTimestamp() > $this->end->getTimestamp()) {
+            throw new \InvalidArgumentException('end date is the day before than start date');
+        }
+
         $this->interval = new DateInterval(self::INTERVAL);
     }
 

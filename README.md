@@ -42,6 +42,22 @@ $end = new DateTime('2012-12-31');
 $range = new DateRange([$start, $end]);
 ```
 
+### Exception
+
+if DateRange cannot accept construct parameters, it throw InvalidArgumentException.
+So in a short scope, you have to catch the exception.
+
+```php
+try {
+  $range = new DateRange('tomorrow', 'today');
+} catch (\InvalidArcumentException $e) {
+  echo $e->getMessage();
+  // end date is the day before than start date
+}
+
+
+```
+
 ### access two date
 
 DateRange has 2 date as DateTime object. and you can access with getter methods.
