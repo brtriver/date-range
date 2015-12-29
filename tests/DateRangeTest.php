@@ -17,19 +17,15 @@ class DateRangeTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function acceptStartAndEndArguments()
+    public function acceptArguments()
     {
+        // as two date parameters.
         $range = new DateRange($this->start, $this->end);
-
         $this->assertSame($this->start, $range->getStart());
         $this->assertSame($this->end, $range->getEnd());
-    }
 
-    /** @test */
-    public function acceptStartAndEndOneArrayArgument()
-    {
+        // as one array of date
         $range = new DateRange([$this->start, $this->end]);
-
         $this->assertSame($this->start, $range->getStart());
         $this->assertSame($this->end, $range->getEnd());
     }
