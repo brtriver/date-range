@@ -36,7 +36,7 @@ class DateRangeTest extends \PHPUnit_Framework_TestCase
      */
     public function throwErrorWhenNumberOfArgumentsIsOver3()
     {
-        $range = new DateRange('2015-12-01', '2015-12-10', '2015-12-31');
+        new DateRange('2015-12-01', '2015-12-10', '2015-12-31');
     }
 
     /**
@@ -45,7 +45,7 @@ class DateRangeTest extends \PHPUnit_Framework_TestCase
      */
     public function throwErrorWhenArrayArgumentIsInvalid()
     {
-        $range = new DateRange(['2015-12-01', '2015-12-10', '2015-12-31']);
+        new DateRange(['2015-12-01', '2015-12-10', '2015-12-31']);
     }
 
 
