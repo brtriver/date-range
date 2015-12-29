@@ -30,6 +30,25 @@ class DateRangeTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($this->end, $range->getEnd());
     }
 
+    /**
+     * @test
+     * @expectedException InvalidArgumentException
+     */
+    public function throwErrorWhenNumberOfArgumentsIsOver3()
+    {
+        $range = new DateRange('2015-12-01', '2015-12-10', '2015-12-31');
+    }
+
+    /**
+     * @test
+     * @expectedException InvalidArgumentException
+     */
+    public function throwErrorWhenArrayArgumentIsInvalid()
+    {
+        $range = new DateRange(['2015-12-01', '2015-12-10', '2015-12-31']);
+    }
+
+
     /** @test */
     public function convertStringToDateTimeObject()
     {

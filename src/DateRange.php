@@ -17,18 +17,17 @@ class DateRange implements IteratorAggregate
 
     public function __construct() {
         $num = func_num_args();
-        if ($num === 2) {
+        if ($num === 1) {
+            list($this->start, $this->end) = self::getDateFromArray(func_get_arg(0));
+        } elseif ($num === 2 ) {
             $this->start = self::convertToDateTime(func_get_arg(0));
             $this->end = self::convertToDateTime(func_get_arg(1));
-        } elseif ($num === 1 && is_array(func_get_arg(0)) && count(func_get_arg(0)) === 2) {
-            $startEndArray = func_get_arg(0);
-            if (is_array($startEndArray) && count($startEndArray) === 2) {
-                $values = array_values($startEndArray);
-                $this->start = self::convertToDateTime($values[0]);
-                $this->end = self::convertToDateTime($values[1]);
-            }
         } else {
-            throw new \InvalidArgumentException('Invalid argument number or format');
+            throw new \InvalidArgumentException('Invalid number of arguments');
+        }
+
+        if (!($this->start instanceof DateTime) || !($this->end instanceof DateTime)) {
+            throw new \InvalidArgumentException('cannot parse start and end date');
         }
 
         if ($this->start->getTimestamp() > $this->end->getTimestamp()) {
@@ -36,6 +35,19 @@ class DateRange implements IteratorAggregate
         }
 
         $this->interval = new DateInterval(self::INTERVAL);
+    }
+
+    private static function getDateFromArray($startEndArray)
+    {
+        $start = $end = null;
+
+        if (is_array($startEndArray) && count($startEndArray) === 2) {
+            $values = array_values($startEndArray);
+            $start = self::convertToDateTime($values[0]);
+            $end = self::convertToDateTime($values[1]);
+        }
+
+        return [$start, $end];
     }
 
     public function excludeStartDate()
