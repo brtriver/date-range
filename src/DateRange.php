@@ -11,6 +11,8 @@ class DateRange implements IteratorAggregate
     private $start;
     private $end;
     private $interval;
+    private $excludeStartDate = false;
+    private $excludeEndDate = false;
     const INTERVAL = 'P1D';
 
     public function __construct() {
@@ -36,6 +38,16 @@ class DateRange implements IteratorAggregate
         $this->interval = new DateInterval(self::INTERVAL);
     }
 
+    public function excludeStartDate()
+    {
+        $this->excludeStartDate = true;
+    }
+
+    public function excludeEndDate()
+    {
+        $this->excludeEndDate = true;
+    }
+
     public function setInterval(DateInterval $interval)
     {
         $this->interval = $interval;
@@ -48,10 +60,20 @@ class DateRange implements IteratorAggregate
 
     public function getDatePeriod(DateInterval $interval = null)
     {
-        $end = clone $this->end;
-        // DatePeriod does not include end date so, plus 1 sec to end date.
-        $end->modify('+1 sec');
-        return new DatePeriod($this->start, ($interval) ?: $this->interval, $end);
+        if (!$this->excludeEndDate) {
+            $end = clone $this->end;
+            // DatePeriod does not include end date so, plus 1 sec to end date.
+            $end->modify('+1 sec');
+        } else {
+            $end = $this->end;
+        }
+
+        $option = null;
+        if ($this->excludeStartDate) {
+            $option = DatePeriod::EXCLUDE_START_DATE;
+        }
+
+        return new DatePeriod($this->start, ($interval) ?: $this->interval, $end, $option);
     }
 
     public function getIterator()
@@ -86,6 +108,19 @@ class DateRange implements IteratorAggregate
         $date = self::convertToDateTime($dateString);
         $timestamp = $date->getTimestamp();
 
-        return ($this->start->getTimestamp() <= $timestamp) && ($timestamp <= $this->end->getTimestamp());
+        if ($this->excludeStartDate) {
+            $isAfterThanStart = $this->start->getTimestamp() < $timestamp;
+        } else {
+            $isAfterThanStart = $this->start->getTimestamp() <= $timestamp;
+        }
+
+        if ($this->excludeEndDate) {
+            $isBeforeThanEnd = $timestamp < $this->end->getTimestamp();
+        } else {
+            $isBeforeThanEnd = $timestamp <= $this->end->getTimestamp();
+        }
+
+
+        return $isAfterThanStart && $isBeforeThanEnd;
     }
 }

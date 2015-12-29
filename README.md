@@ -89,7 +89,7 @@ var_dump($range->contains('2017-01-10'));
 You can use DateRange in foreach.
 
 ```php
-foreach($range as $d) {
+foreach ($range as $d) {
     echo $d->format('Y-m-d') . PHP_EOL;
 }
 ```
@@ -97,7 +97,7 @@ foreach($range as $d) {
 If you use DatePeriod object directly, you can also get DatePeriod object through `getDatePeriod` like below:
 
 ```php
-foreach($range->getDatePeriod() as $d) {
+foreach ($range->getDatePeriod() as $d) {
     echo $d->format('Y-m-d') . PHP_EOL;
 }
 // 2015-12-01
@@ -120,7 +120,7 @@ $start = new DateTime('2012-12-01');
 $end = new DateTime('2020-12-31');
 $range = new DateRange([$start, $end]);
 $range->setInterval(new DateInterval('P1Y')); // change from 'P1D' (Default)
-foreach($range->getDatePeriod() as $d) {
+foreach ($range->getDatePeriod() as $d) {
     echo $d->format('Y-m-d') . PHP_EOL;
 }
 // 2012-12-01
@@ -132,6 +132,31 @@ foreach($range->getDatePeriod() as $d) {
 // 2018-12-01
 // 2019-12-01
 // 2020-12-01
+```
+
+## exclude start or end date
+
+If you want to exclude start (end) date in range, call `excludeStartDate()` or `excludeEndDate()` like below:
+
+```php
+// exclude start date
+$range = new DateRange('2015-12-01', '2015-12-03');
+$range->excludeStartDate();
+foreach ($range => $d) {
+    echo $d->format('Y-m-d') . PHP_EOL;
+}
+// 2015-12-02
+// 2015-12-03
+
+// exclude end date
+$range = new DateRange('2015-12-01', '2015-12-03');
+$range->excludeEndDate();
+foreach ($range => $d) {
+    echo $d->format('Y-m-d') . PHP_EOL;
+}
+// 2015-12-01
+// 2015-12-02
+
 ```
 
 ## try demo

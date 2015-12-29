@@ -118,4 +118,35 @@ class DateRangeTest extends \PHPUnit_Framework_TestCase
     {
         new DateRange(['tomorrow', 'today']);
     }
+
+    /** @test */
+    public function excludeStartDate()
+    {
+        $range = new DateRange([$this->start, $this->end]);
+        $range->excludeStartDate();
+        $this->assertFalse($range->contains('2015-12-01'));
+        $this->assertTrue($range->contains('2015-12-02'));
+
+        // dirty test .. (check the first value only)
+        foreach ($range as $d) {
+            $this->assertEquals(new DateTime('2015-12-02'), $d);
+            break;
+        }
+    }
+
+    /** @test */
+    public function excludeEndDate()
+    {
+        $range = new DateRange([$this->start, $this->end]);
+        $range->excludeEndDate();
+        $this->assertFalse($range->contains('2015-12-31'));
+        $this->assertTrue($range->contains('2015-12-30'));
+
+        $last = null;
+        // dirty test..  (check the last value only)
+        foreach ($range as $d) {
+            $last = $d;
+        }
+        $this->assertEquals(new DateTime('2015-12-30'), $last);
+    }
 }
