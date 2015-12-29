@@ -175,4 +175,12 @@ class DateRangeTest extends \PHPUnit_Framework_TestCase
         $range = new DateRange('2015-12-01', '2015-12-03');
         $this->assertEquals('+2 days', $range->diff()->format('%R%a days'));
     }
+
+    /** @test */
+    public function toString()
+    {
+        $range = new DateRange('2015-12-01', '2015-12-03');
+        $this->assertEquals('2015-12-01 ~ 2015-12-03', $range);
+        $this->assertEquals('2015/12/01 - 2015/12/03', $range->toString('Y/m/d', '-'));
+    }
 }

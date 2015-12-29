@@ -95,6 +95,24 @@ $range->diff()->format('%R%a days');
 // +2 days
 ```
 
+### toString
+
+get start and end date string to echo the instance:
+
+```php
+$range = new DateRange('2015-12-01', '2015-12-03');
+echo $range;
+// '2015-12-01 ~ 2015-12-03'
+```
+
+If you want to change the format, to call `toString` method with your format and separator:
+
+```php
+$range = new DateRange('2015-12-01', '2015-12-03');
+echo $range->toString('Y/m/d', '-');
+// '2015/12/01 - 2015/12/03'
+```
+
 ### Period
 You can use DateRange in foreach.
 

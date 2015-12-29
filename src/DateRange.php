@@ -143,4 +143,14 @@ class DateRange implements IteratorAggregate
 
         return $isAfterThanStart && $isBeforeThanEnd;
     }
+
+    public function toString($format = 'Y-m-d', $separator = '~')
+    {
+        return sprintf('%s %s %s', $this->start->format($format), $separator, $this->end->format($format));
+    }
+
+    public function __toString()
+    {
+        return $this->toString();
+    }
 }
