@@ -51,7 +51,7 @@ class DateRange implements IteratorAggregate
         $end = clone $this->end;
         // DatePeriod does not include end date so, plus 1 sec to end date.
         $end->modify('+1 sec');
-        return new DatePeriod($this->start, ($interval)?: $this->interval, $end);
+        return new DatePeriod($this->start, ($interval) ?: $this->interval, $end);
     }
 
     public function getIterator()

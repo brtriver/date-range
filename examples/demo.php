@@ -23,12 +23,12 @@ var_dump($range->contains('2017-01-10'));
 
 
 ## get DatePeriod for loop
-foreach($range as $d) {
+foreach ($range as $d) {
     echo $d->format('Y-m-d') . PHP_EOL;
 }
 
 ## or
-foreach($range->getDatePeriod() as $d) {
+foreach ($range->getDatePeriod() as $d) {
     echo $d->format('Y-m-d') . PHP_EOL;
 }
 
@@ -49,7 +49,7 @@ $start = new DateTime('2012-12-01');
 $end = new DateTime('2020-12-31');
 $range = new DateRange([$start, $end]);
 $range->setInterval(new DateInterval('P1Y')); // change from 'P1D' (Default)
-foreach($range->getDatePeriod() as $d) {
+foreach ($range->getDatePeriod() as $d) {
     echo $d->format('Y-m-d') . PHP_EOL;
 }
 // 2012-12-01
