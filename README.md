@@ -105,6 +105,7 @@ foreach($range->getDatePeriod() as $d) {
 // 2015-12-28
 // 2015-12-29
 // 2015-12-30
+// 2015-12-31
 ```
 
 Default interval is set to `P1D`.

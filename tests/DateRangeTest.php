@@ -70,7 +70,9 @@ class DateRangeTest extends \PHPUnit_Framework_TestCase
     public function getDatePeriod()
     {
         $range = new DateRange([$this->start, $this->end]);
-        $expected = new DatePeriod($this->start, new DateInterval('P1D'), $this->end);
+        $periodEnd = clone $this->end;
+        $periodEnd->modify('+1 sec');
+        $expected = new DatePeriod($this->start, new DateInterval('P1D'), $periodEnd);
         $this->assertEquals($expected, $range->getDatePeriod());
     }
 
@@ -86,6 +88,7 @@ class DateRangeTest extends \PHPUnit_Framework_TestCase
             new DateTime('2015-12-01'),
             new DateTime('2015-12-02'),
             new DateTime('2015-12-03'),
+            new DateTime('2015-12-04'),
         ];
         $this->assertEquals($expected, $results);
     }
