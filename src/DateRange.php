@@ -122,18 +122,17 @@ class DateRange implements IteratorAggregate
     public function contains($dateString)
     {
         $date = self::convertToDateTime($dateString);
-        $timestamp = $date->getTimestamp();
 
         if ($this->excludeStartDate) {
-            $isAfterThanStart = $this->start->getTimestamp() < $timestamp;
+            $isAfterThanStart = $this->start < $date;
         } else {
-            $isAfterThanStart = $this->start->getTimestamp() <= $timestamp;
+            $isAfterThanStart = $this->start <= $date;
         }
 
         if ($this->excludeEndDate) {
-            $isBeforeThanEnd = $timestamp < $this->end->getTimestamp();
+            $isBeforeThanEnd = $date < $this->end;
         } else {
-            $isBeforeThanEnd = $timestamp <= $this->end->getTimestamp();
+            $isBeforeThanEnd = $date <= $this->end;
         }
 
 
