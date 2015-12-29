@@ -52,7 +52,7 @@ So in a short scope, you have to catch the exception.
 ```php
 try {
   $range = new DateRange('tomorrow', 'today');
-} catch (\InvalidArcumentException $e) {
+} catch (\InvalidArgumentException $e) {
   echo $e->getMessage();
   // end date is the day before than start date
 }
