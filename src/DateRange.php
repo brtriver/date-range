@@ -16,15 +16,7 @@ class DateRange implements IteratorAggregate
     const INTERVAL = 'P1D';
 
     public function __construct() {
-        $num = func_num_args();
-        if ($num === 1) {
-            list($this->start, $this->end) = self::getDateFromArray(func_get_arg(0));
-        } elseif ($num === 2) {
-            $this->start = self::convertToDateTime(func_get_arg(0));
-            $this->end = self::convertToDateTime(func_get_arg(1));
-        } else {
-            throw new \InvalidArgumentException('Invalid number of arguments');
-        }
+        $this->parseArguments(func_get_args());
 
         if (!($this->start instanceof DateTime) || !($this->end instanceof DateTime)) {
             throw new \InvalidArgumentException('cannot parse start and end date');
@@ -35,6 +27,18 @@ class DateRange implements IteratorAggregate
         }
 
         $this->interval = new DateInterval(self::INTERVAL);
+    }
+
+    private function parseArguments($args)
+    {
+        if (count($args) === 1) {
+            list($this->start, $this->end) = self::getDateFromArray($args[0]);
+        } elseif (count($args) === 2) {
+            $this->start = self::convertToDateTime($args[0]);
+            $this->end = self::convertToDateTime($args[1]);
+        } else {
+            throw new \InvalidArgumentException('Invalid number of arguments');
+        }
     }
 
     private static function getDateFromArray($startEndArray)
