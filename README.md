@@ -85,6 +85,16 @@ var_dump($range->contains('2017-01-10'));
 
 ```
 
+### diff
+
+get DateInterval between start and end date to call `diff`:
+
+```php
+$range = new DateRange('2015-12-01', '2015-12-03');
+$range->diff()->format('%R%a days');
+// +2 days
+```
+
 ### Period
 You can use DateRange in foreach.
 

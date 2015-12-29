@@ -168,4 +168,11 @@ class DateRangeTest extends \PHPUnit_Framework_TestCase
         }
         $this->assertEquals(new DateTime('2015-12-30'), $last);
     }
+
+    /** @test */
+    public function diff()
+    {
+        $range = new DateRange('2015-12-01', '2015-12-03');
+        $this->assertEquals('+2 days', $range->diff()->format('%R%a days'));
+    }
 }

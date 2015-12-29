@@ -119,6 +119,11 @@ class DateRange implements IteratorAggregate
         return $this->end;
     }
 
+    public function diff()
+    {
+        return $this->start->diff($this->end);
+    }
+
     public function contains($dateString)
     {
         $date = self::convertToDateTime($dateString);
