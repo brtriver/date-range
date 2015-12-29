@@ -17,7 +17,7 @@ class DateRangeTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function acceptStartEndParams()
+    public function acceptStartAndEndArguments()
     {
         $range = new DateRange($this->start, $this->end);
 
@@ -26,7 +26,7 @@ class DateRangeTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function acceptStartEndArray()
+    public function acceptStartAndEndOneArrayArgument()
     {
         $range = new DateRange([$this->start, $this->end]);
 
