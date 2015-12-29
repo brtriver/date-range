@@ -77,7 +77,7 @@ class DateRangeTest extends \PHPUnit_Framework_TestCase
     {
         $range = new DateRange(['2015-12-01', '2015-12-04']);
         $results = [];
-        foreach($range as $d) {
+        foreach ($range as $d) {
             $results[] = $d;
         }
         $expected = [
