@@ -22,7 +22,7 @@ install:
 	$(PHP_BIN) composer.phar install
 
 test:
-	$(PHP_BIN) $(PHPUNIT) --tap --colors ./tests
+	$(PHP_BIN) $(PHPUNIT) --colors ./tests
 
 testrunner:
 	$(GUARD_BIN) -i
