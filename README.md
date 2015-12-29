@@ -1,4 +1,4 @@
-DateRange is Simpe Date Range Object for PHP
+DateRange -- Simple Date Range Object for PHP
 ==============================================
 
 [![Build Status](https://travis-ci.org/brtriver/date-range.svg)](https://travis-ci.org/brtriver/date-range)
