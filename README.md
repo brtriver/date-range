@@ -2,7 +2,7 @@ DateRange -- Simple Date Range Object for PHP
 ==============================================
 
 [![Build Status](https://travis-ci.org/brtriver/date-range.svg)](https://travis-ci.org/brtriver/date-range)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/brtriver/date-range/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/brtriver/date-range/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/brtriver/date-range/badges/quality-score.png?b=master&t=20151230)](https://scrutinizer-ci.com/g/brtriver/date-range/?branch=master)
 
 DateRange is a simple representation of date range for PHP.
 
