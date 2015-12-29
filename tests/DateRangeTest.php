@@ -2,7 +2,7 @@
 namespace Brtriver\DateRange\Test;
 
 use Brtriver\DateRange\DateRange;
-use Datetime;
+use DateTime;
 use DateInterval;
 use DatePeriod;
 

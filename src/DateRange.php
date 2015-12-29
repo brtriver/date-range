@@ -19,7 +19,7 @@ class DateRange implements IteratorAggregate
         $num = func_num_args();
         if ($num === 1) {
             list($this->start, $this->end) = self::getDateFromArray(func_get_arg(0));
-        } elseif ($num === 2 ) {
+        } elseif ($num === 2) {
             $this->start = self::convertToDateTime(func_get_arg(0));
             $this->end = self::convertToDateTime(func_get_arg(1));
         } else {
